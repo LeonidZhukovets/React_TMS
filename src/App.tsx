@@ -4,6 +4,7 @@ import Button, { ButtonTypes } from "./Components/Button";
 import UserName from "./Components/UserName";
 //@ts-ignore
 import styles from "./App.module.css";
+import Title from "./Components/Title";
 
 const App = () => {
   return (
@@ -24,6 +25,8 @@ const App = () => {
         onClick={() => alert("Error")}
       />
       <UserName username={"Artem_Malkin"} />
+
+      <Title title={"Sign In"} />
     </div>
   );
 };
