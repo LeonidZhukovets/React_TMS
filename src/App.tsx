@@ -5,19 +5,18 @@ import UserName from "./Components/UserName";
 //@ts-ignore
 import styles from "./App.module.css";
 import Title from "./Components/Title";
-import Hamburger from "./Components/Hamburger";
-import Tabs from "./Components/Tabs";
+import { BurgerClosedIcon, BurgerOpenedIcon } from "./Assets/icons";
+
+import TabsList from "./Components/TabsList";
+import Input from "./Components/Input";
 
 const App = () => {
-  const [isOpen, setOpened] = useState(false);
-  const tabsItem = [
-    { title: "All", id: 1 },
-    { title: "My favorites", id: 2 },
-    { title: "Popular", id: 3 },
-  ];
-  const [activeTabId, setActiveTabId] = useState(1);
-  const handleTabClick = (id: number) => {
-    setActiveTabId(id);
+  const [isOpened, setOpened] = useState(false);
+
+  const [inputValue, setInputValue] = useState("");
+
+  const onChange = (value: string) => {
+    setInputValue(value);
   };
 
   return (
@@ -41,15 +40,38 @@ const App = () => {
 
       <Title title={"Sign In"} />
 
-      <Hamburger isOpened={isOpen} onClick={() => setOpened(!isOpen)} />
-      <Tabs
-        activeTabId={activeTabId}
-        tabs={tabsItem}
-        onClick={handleTabClick}
-      ></Tabs>
-      {activeTabId === 1 && <div>Tab1 works</div>}
-      {activeTabId === 2 && <div>Tab2 works</div>}
-      {activeTabId === 3 && <div>Tab3 works</div>}
+      <Button
+        title={isOpened ? <BurgerClosedIcon /> : <BurgerOpenedIcon />}
+        type={ButtonTypes.Primary}
+        className={styles.BurgerButton}
+        onClick={() => setOpened(!isOpened)}
+      />
+      <TabsList />
+      <Input
+        value={inputValue}
+        onChange={onChange}
+        placeholder={"Placeholder"}
+        title={"Title"}
+        //   error={"Error"}
+        //   disabled
+      />
+      <Input
+        value={inputValue}
+        onChange={onChange}
+        placeholder={"Placeholder"}
+        title={"Title"}
+        //   error={"Error"}
+        disabled
+      />
+      <Input
+        value={inputValue}
+        onChange={onChange}
+        placeholder={"Placeholder"}
+        title={"Title"}
+        error={"Error text"}
+        //   disabled
+      />
+      <div>{inputValue}</div>
     </div>
   );
 };

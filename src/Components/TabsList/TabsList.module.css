@@ -1,4 +1,4 @@
-.tabs {
+.container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -6,6 +6,10 @@
   padding: 0px;
   gap: 40px;
   background-color: #e5e5e5;
+  border-bottom: 1px solid #dadada;
+}
+
+.tabs {
   cursor: pointer;
 }
 
@@ -15,8 +19,13 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
+  border: 2px solid transparent;
 }
 
 .tab:hover {
   color: #2231aa;
+}
+
+.activeTab {
+  border-bottom: 2px solid #313037;
 }
