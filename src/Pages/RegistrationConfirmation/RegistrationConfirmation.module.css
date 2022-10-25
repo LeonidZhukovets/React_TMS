@@ -1,0 +1,19 @@
+.container {
+  width: 624px; /* Уточнить!!!! */
+}
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #313037;
+}
+.email {
+  font-weight: bold;
+}
+
+.button {
+  margin-top: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
