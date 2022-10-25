@@ -1,0 +1,36 @@
+.container {
+  background-color: #e5e5e5;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 8px;
+}
+.input {
+  width: 544px;
+  height: 56px;
+  border: none;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  border-radius: 2px;
+}
+
+.input:focus {
+  border: 2px solid #dadada;
+  border-radius: 2px;
+}
+
+.error {
+  border: 2px solid #fd3419;
+  border-radius: 5px;
+}
+.error:focus {
+  border: 2px solid #fd3419;
+  border-radius: 5px;
+}
+.errorText {
+  color: #fd3419;
+}

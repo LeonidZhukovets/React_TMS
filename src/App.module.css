@@ -1,0 +1,15 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 15px;
+  flex-wrap: wrap;
+  background-color: lightcyan;
+}
+
+.BurgerButton {
+  padding: 30px;
+}
