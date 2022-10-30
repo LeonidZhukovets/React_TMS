@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  gap: 32px;
+}
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  gap: 39px;
+}
+
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  gap: 39px;
+}
+
+.mediumContainer {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 736px;
+  gap: 39px 32px;
+}

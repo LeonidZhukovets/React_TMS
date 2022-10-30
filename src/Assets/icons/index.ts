@@ -1,2 +1,6 @@
 export * from './BurgerClosedIcon'
 export * from './BurgerOpenedIcon'
+export * from './LikeIcon'
+export * from './DisLikeIcon'
+export * from './BookmarkIcon'
+export * from './SettingIcon'
