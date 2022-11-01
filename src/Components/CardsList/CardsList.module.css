@@ -2,6 +2,9 @@
   display: flex;
   gap: 32px;
 }
+.darkContainer{
+  background-color: #313037;}
+
 .rightSide {
   display: flex;
   flex-direction: column;

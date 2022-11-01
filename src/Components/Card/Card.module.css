@@ -11,6 +11,13 @@
   justify-content: space-between;
   gap: 32px;
 }
+.darkContainer{
+  background-color: #313037;
+  color: #ffffff;
+}
+.darkContainer svg path {
+  fill: #ffffff;
+}
 
 .cardFooter {
   display: flex;
@@ -51,6 +58,10 @@
   color: #313037;
 }
 
+.lightTitle {
+  color: #ffffff;
+}
+
 .title:hover {
   color: #2231aa;
   cursor: pointer;
@@ -60,6 +71,10 @@
   font-size: 16px;
   line-height: 28px;
   color: #8d8e97;
+}
+
+.lightDescription {
+  color: #ffffff;
 }
 
 .date {

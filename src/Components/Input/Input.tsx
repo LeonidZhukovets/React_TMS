@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent } from "react";
+import React, { FC, ChangeEvent, forwardRef } from "react";
 import classnames from "classnames";
 
 //@ts-ignore
@@ -14,9 +14,16 @@ type InputProps = {
   className?: string;
 };
 
-const Input: FC<InputProps> = (props) => {
-  const { value, onChange, placeholder, disabled, title, error, className } =
-    props;
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  const {
+    value,
+    onChange,
+    placeholder,
+    disabled,
+    title,
+    error,
+    className,
+  } = props;
   const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
@@ -24,6 +31,7 @@ const Input: FC<InputProps> = (props) => {
     <div className={styles.container}>
       {title && <div className={styles.title}>{title}</div>}
       <input
+        ref={ref}
         value={value}
         onChange={onChangeInput}
         placeholder={placeholder}
@@ -35,6 +43,6 @@ const Input: FC<InputProps> = (props) => {
       {error && <div className={styles.errorText}>{error}</div>}
     </div>
   );
-};
+});
 
 export default Input;

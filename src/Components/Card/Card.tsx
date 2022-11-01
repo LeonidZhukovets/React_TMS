@@ -3,7 +3,8 @@ import { BookmarkIcon, DisLikeIcon, LikeIcon, SettingIcon } from "../../Assets";
 //@ts-ignore
 import styles from "./Card.module.css";
 
-import { CardType } from "../../constants/@types";
+import { CardType, Theme } from "../../constants/@types";
+import { useThemeContext } from "../../Context/Theme";
 import classNames from "classnames";
 
 export enum CardSize {
@@ -17,6 +18,7 @@ type CardProps = {
   size: CardSize;
 };
 const Card: FC<CardProps> = ({ card, size }) => {
+  const { theme } = useThemeContext();
   const { title, text, image, date } = card;
 
   const isLarge = size === CardSize.Large;
@@ -28,6 +30,7 @@ const Card: FC<CardProps> = ({ card, size }) => {
       className={classNames(styles.container, {
         [styles.mediumContainer]: isMedium,
         [styles.smallContainer]: isSmall,
+        [styles.darkContainer]: theme === Theme.Dark,
       })}
     >
       <div
@@ -42,12 +45,21 @@ const Card: FC<CardProps> = ({ card, size }) => {
             <div
               className={classNames(styles.title, {
                 [styles.smallTitle]: !isLarge,
+                [styles.lightTitle]: theme === Theme.Dark,
               })}
             >
               {title}
             </div>
           </div>
-          {isLarge && <div className={styles.description}>{text}</div>}
+          {isLarge && (
+            <div
+              className={classNames(styles.description, {
+                [styles.lightDescription]: theme === Theme.Dark,
+              })}
+            >
+              {text}
+            </div>
+          )}
         </div>
         <img
           src={image}

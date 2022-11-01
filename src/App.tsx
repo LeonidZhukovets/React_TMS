@@ -2,8 +2,13 @@ import React, { useState, useEffect } from "react";
 
 //@ts-ignore
 import styles from "./App.module.css";
-// import Card from "./Components/Card";
-// import { CardSize } from "./Components/Card/Card";
+import Card from "./Components/Card";
+import { CardSize } from "./Components/Card/Card";
+// import SignIn from "./Pages/SignIn";
+import SignUp from "./Pages/SignUp";
+import ThemeProvider from "./Context/Theme";
+import { Theme } from "./constants/@types";
+import ThemeSwitcher from "./Components/ThemeSwitcher";
 import CardsList from "./Components/CardsList";
 import { CardsListType } from "./constants/@types";
 
@@ -42,11 +47,20 @@ const App = () => {
     }
   }, []);
 
+  const [theme, setTheme] = useState(Theme.Dark)
+
+  const onChangeTheme = (value: Theme) =>{
+    setTheme(value);
+  }
   return (
+    <ThemeProvider theme={theme} onChangeTheme={onChangeTheme}>
     <div className={styles.container}>
+      <ThemeSwitcher />
+      {/*<SignUp />*/}
       {/* <Card card={MOCK_CARD} size={CardSize.Small} /> */}
       <CardsList cardsList={cardsList} />
     </div>
+    </ThemeProvider>
   );
 };
 

@@ -11,3 +11,9 @@ export type CardType = {
 export type CardsListType = Array<CardType>;
 
 //  export type CardList = Array<CardType>; todo rename
+
+
+export enum Theme {
+  Light = 'light',
+  Dark = 'dark'
+}
