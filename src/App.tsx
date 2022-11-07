@@ -47,19 +47,19 @@ const App = () => {
     }
   }, []);
 
-  const [theme, setTheme] = useState(Theme.Dark)
+  const [theme, setTheme] = useState(Theme.Dark);
 
-  const onChangeTheme = (value: Theme) =>{
+  const onChangeTheme = (value: Theme) => {
     setTheme(value);
-  }
+  };
   return (
     <ThemeProvider theme={theme} onChangeTheme={onChangeTheme}>
-    <div className={styles.container}>
-      <ThemeSwitcher />
-      {/*<SignUp />*/}
-      {/* <Card card={MOCK_CARD} size={CardSize.Small} /> */}
-      <CardsList cardsList={cardsList} />
-    </div>
+      <div className={styles.container}>
+        <ThemeSwitcher />
+        {/*<SignUp />*/}
+        {/* <Card card={MOCK_CARD} size={CardSize.Small} /> */}
+        <CardsList cardsList={cardsList} />
+      </div>
     </ThemeProvider>
   );
 };
