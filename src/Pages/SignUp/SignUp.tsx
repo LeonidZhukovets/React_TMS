@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import Button, { ButtonTypes } from "../../Components/Button";
+import { NavLink } from "react-router-dom";
 
 import FormContainer from "../../Components/FormContainer";
 import Input from "../../Components/Input";
-
-//@ts-ignore
+import { PathNames } from "../Router/Router";
 import styles from "./SignUp.module.css";
 
 const SignUp = () => {
@@ -15,11 +15,11 @@ const SignUp = () => {
 
   const nameRef = useRef<HTMLInputElement>(null);
 
-  useEffect(()=>{
-    if (nameRef.current){
-      nameRef.current.focus()
+  useEffect(() => {
+    if (nameRef.current) {
+      nameRef.current.focus();
     }
-  },[])
+  }, []);
 
   return (
     <FormContainer title={"Sign Up"}>
@@ -30,7 +30,7 @@ const SignUp = () => {
             placeholder={"Your Name"}
             value={name}
             onChange={(value: string) => setName(value)}
-            ref = {nameRef}
+            ref={nameRef}
           />
           <Input
             title={"Email"}
@@ -60,7 +60,9 @@ const SignUp = () => {
         />
         <div className={styles.signUpRedirectContainer}>
           {"Already have an account?"}{" "}
-          <span className={styles.SignUpLink}>{"Sign In"}</span>
+          <NavLink to={PathNames.SignIn} className={styles.SignInLink}>
+            {"Sign In"}
+          </NavLink>
         </div>
       </>
     </FormContainer>
