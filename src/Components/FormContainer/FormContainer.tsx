@@ -1,8 +1,6 @@
 import classNames from "classnames";
 import React, { FC, ReactElement } from "react";
 import Title from "../Title";
-
-//@ts-ignore
 import styles from "./FormContainer.module.css";
 import { useThemeContext } from "../../Context/Theme";
 import { Theme } from "../../constants/@types";

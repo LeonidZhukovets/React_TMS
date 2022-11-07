@@ -5,6 +5,7 @@ import Header from "../../Components/Header";
 import styles from "./PagesWrapper.module.css";
 import { PathNames } from "../Router/Router";
 import Home from "../Home";
+import Footer from "../../Components/Footer";
 
 const PagesWrapper = () => {
   const { pathname } = useLocation();
@@ -13,7 +14,7 @@ const PagesWrapper = () => {
     <div className={styles.container}>
       <Header />
       {pathname === PathNames.Home ? <Home /> : <Outlet />}
-      {/*<Footer />*/}
+      <Footer />
     </div>
   );
 };

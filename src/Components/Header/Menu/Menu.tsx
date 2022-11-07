@@ -9,7 +9,7 @@ import classNames from "classnames";
 import UserName from "../../UserName";
 
 const Menu = () => {
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
