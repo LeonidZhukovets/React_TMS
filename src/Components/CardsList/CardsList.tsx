@@ -10,7 +10,7 @@ type CardsListProps = {
 };
 
 const CardsList: FC<CardsListProps> = ({ cardsList }) => {
-  return cardsList?.length ? (
+  return cardsList && cardsList.length > 0 ? (
     <div className={styles.container}>
       <div className={styles.leftSide}>
         <Card card={cardsList[0]} size={CardSize.Large} />
