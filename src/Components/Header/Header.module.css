@@ -2,7 +2,24 @@
     display: flex;
     position: relative;
     height: 84px;
+    justify-content: space-between;
+    background-color: #2231aa;
 }
 .burgerButton {
+    padding: 30px;
+    /*border-color: transparent;*/
+    border-right: 1px solid #5360CD;
+}
+
+.searchContainer{
+    display: flex;
+}
+
+.searchButton{
+    padding: 30px;
+    border-right: 1px solid #5360CD;
+    border-left: 1px solid #5360CD;
+}
+.userContainer{
     padding: 30px;
 }

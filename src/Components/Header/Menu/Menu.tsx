@@ -8,9 +8,9 @@ import { PathNames } from "../../../Pages/Router/Router";
 import classNames from "classnames";
 import UserName from "../../UserName";
 
-const Menu = () => {
-  const isLoggedIn = true;
+export const isLoggedIn = false;
 
+const Menu = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
