@@ -1,0 +1,22 @@
+import React, { FC, ReactElement } from "react";
+
+import ThemeContext from "./ThemeContext";
+import { Theme } from "../../constants/@types";
+
+type ThemeProviderProps = {
+  theme: Theme;
+  onChangeTheme: (value: Theme) => void;
+  children: ReactElement;
+};
+
+const ThemeProvider: FC<ThemeProviderProps> = ({
+  theme,
+  children,
+  onChangeTheme,
+}) => {
+  return (
+    <ThemeContext.Provider value={{ theme, onChangeTheme }}>{children}</ThemeContext.Provider>
+  );
+};
+
+export default ThemeProvider;

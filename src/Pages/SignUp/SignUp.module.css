@@ -1,0 +1,29 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+
+.button {
+  margin-top: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signUpRedirectContainer {
+  margin-top: 24px;
+  align-self: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.SignUpLink {
+  color: #2231aa;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+}

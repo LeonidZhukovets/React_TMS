@@ -1,78 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-import Button, { ButtonTypes } from "./Components/Button";
-import UserName from "./Components/UserName";
 //@ts-ignore
 import styles from "./App.module.css";
-import Title from "./Components/Title";
-import { BurgerClosedIcon, BurgerOpenedIcon } from "./Assets/icons";
+import Card from "./Components/Card";
+import { CardSize } from "./Components/Card/Card";
+// import SignIn from "./Pages/SignIn";
+import SignUp from "./Pages/SignUp";
+import ThemeProvider from "./Context/Theme";
+import { Theme } from "./constants/@types";
+import ThemeSwitcher from "./Components/ThemeSwitcher";
+import CardsList from "./Components/CardsList";
+import { CardsListType } from "./constants/@types";
 
-import TabsList from "./Components/TabsList";
-import Input from "./Components/Input";
+const MOCK_CARD = {
+  id: 0,
+  image:
+    "https://images.all-free-download.com/images/graphiclarge/december_sunset_564887.jpg",
+  text: "Astronauts Kayla Barron and Raja Chari floated out of the International Space Station airlock for a spacewalk Tuesday, installing brackets and struts to support new solar arrays to upgrade the research lab's power system on the same day that crewmate Mark Vande Hei marked his 341st day in orbit, a U.S. record for a single spaceflight.",
+  date: "2022-10-27",
+  lesson_num: 0,
+  title: "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
+  author: 0,
+};
+
+const MOCK_CARDS_LIST = [
+  MOCK_CARD,
+  MOCK_CARD,
+  MOCK_CARD,
+  MOCK_CARD,
+  MOCK_CARD,
+  MOCK_CARD,
+  MOCK_CARD,
+  MOCK_CARD,
+  MOCK_CARD,
+  MOCK_CARD,
+  MOCK_CARD,
+];
 
 const App = () => {
-  const [isOpened, setOpened] = useState(false);
+  const [cardsList, setCardsList] = useState<CardsListType | null>(null);
 
-  const [inputValue, setInputValue] = useState("");
+  useEffect(() => {
+    const cardListData: CardsListType = MOCK_CARDS_LIST;
+    if (cardListData?.length) {
+      setCardsList(cardListData);
+    }
+  }, []);
 
-  const onChange = (value: string) => {
-    setInputValue(value);
+  const [theme, setTheme] = useState(Theme.Dark);
+
+  const onChangeTheme = (value: Theme) => {
+    setTheme(value);
   };
-
   return (
-    <div className={styles.container}>
-      <Button
-        title={"Primary"}
-        type={ButtonTypes.Primary}
-        onClick={() => alert("Primary")}
-      />
-      <Button
-        title={"Secondary"}
-        type={ButtonTypes.Secondary}
-        onClick={() => alert("Secondary")}
-      />
-      <Button
-        title={"Error"}
-        type={ButtonTypes.Error}
-        onClick={() => alert("Error")}
-      />
-      <UserName username={"Artem_Malkin"} />
-
-      <Title title={"Sign In"} />
-
-      <Button
-        title={isOpened ? <BurgerClosedIcon /> : <BurgerOpenedIcon />}
-        type={ButtonTypes.Primary}
-        className={styles.BurgerButton}
-        onClick={() => setOpened(!isOpened)}
-      />
-      <TabsList />
-      <Input
-        value={inputValue}
-        onChange={onChange}
-        placeholder={"Placeholder"}
-        title={"Title"}
-        //   error={"Error"}
-        //   disabled
-      />
-      <Input
-        value={inputValue}
-        onChange={onChange}
-        placeholder={"Placeholder"}
-        title={"Title"}
-        //   error={"Error"}
-        disabled
-      />
-      <Input
-        value={inputValue}
-        onChange={onChange}
-        placeholder={"Placeholder"}
-        title={"Title"}
-        error={"Error text"}
-        //   disabled
-      />
-      <div>{inputValue}</div>
-    </div>
+    <ThemeProvider theme={theme} onChangeTheme={onChangeTheme}>
+      <div className={styles.container}>
+        <ThemeSwitcher />
+        {/*<SignUp />*/}
+        {/* <Card card={MOCK_CARD} size={CardSize.Small} /> */}
+        <CardsList cardsList={cardsList} />
+      </div>
+    </ThemeProvider>
   );
 };
 
