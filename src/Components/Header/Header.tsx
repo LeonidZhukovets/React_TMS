@@ -22,7 +22,7 @@ const Header = () => {
   return (
     <div className={styles.container}>
       <Button
-        title={isOpened ? <BurgerOpenedIcon /> : <BurgerClosedIcon />}
+        icon={isOpened ? <BurgerOpenedIcon /> : <BurgerClosedIcon />}
         onClick={onBurgerClick}
         type={ButtonTypes.Primary}
         className={styles.burgerButton}
@@ -30,7 +30,7 @@ const Header = () => {
       {isOpened && <Menu />}
       <div className={styles.searchContainer}>
         <Button
-          title={<SearchIcon />}
+          icon={<SearchIcon />}
           type={ButtonTypes.Primary}
           onClick={onBurgerClick}
           className={styles.searchButton}
@@ -39,7 +39,7 @@ const Header = () => {
           <UserName username={"Artem_Malkin"} />
         ) : (
           <Button
-            title={<UserIcon />}
+            icon={<UserIcon />}
             type={ButtonTypes.Primary}
             onClick={() => alert("signIn")}
             className={styles.userContainer}

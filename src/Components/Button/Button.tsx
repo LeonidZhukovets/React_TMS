@@ -8,10 +8,14 @@ export enum ButtonTypes {
   Primary = "primary",
   Secondary = "secondary",
   Error = "error",
+  Like = "like",
+  Dislike = "dislike",
+  Bookmark = "bookmark",
 }
 
 type ButtonProps = {
-  title: string | ReactElement;
+  icon?: ReactElement;
+  title?: string;
   type: ButtonTypes;
   onClick: () => void;
   className?: string;
@@ -19,7 +23,7 @@ type ButtonProps = {
 };
 
 const Button: FC<ButtonProps> = (props) => {
-  const { type, title, onClick, className, disabled } = props;
+  const { type, title, onClick, className, disabled, icon } = props;
 
   const buttonClassName = styles[type];
 
@@ -30,6 +34,7 @@ const Button: FC<ButtonProps> = (props) => {
       })}
       onClick={onClick}
     >
+      {icon}
       {title}
     </div>
   );
