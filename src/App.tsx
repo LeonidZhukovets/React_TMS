@@ -1,34 +1,33 @@
-import React, { useState } from "react";
-
+import React from "react";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import ThemeProvider from "./Context/Theme";
 import { Theme } from "./constants/@types";
 
 import Router from "./Pages/Router";
-import ContentPage from "./Pages/ContentPage";
-
-const MOCK_CARD = {
-  id: 0,
-  image:
-    "https://images.all-free-download.com/images/graphiclarge/december_sunset_564887.jpg",
-  text: "Astronauts Kayla Barron and Raja Chari floated out of the International Space Station airlock for a spacewalk Tuesday, installing brackets and struts to support new solar arrays to upgrade the research lab's power system on the same day that crewmate Mark Vande Hei marked his 341st day in orbit, a U.S. record for a single spaceflight.",
-  date: "2022-10-27",
-  lesson_num: 0,
-  title: "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
-  author: 0,
-};
+import { store } from "./Redux/store";
+import { setTheme } from "./Redux/Reducers/themeReducer";
+import ThemeSelectors from "./Redux/Selectors/themeSelectors";
 
 const App = () => {
-  const [theme, setTheme] = useState(Theme.Dark);
+  const dispatch = useDispatch();
+  const theme = useSelector(ThemeSelectors.getTheme);
 
   const onChangeTheme = (value: Theme) => {
-    setTheme(value);
+    dispatch(setTheme(value));
   };
   return (
     <ThemeProvider theme={theme} onChangeTheme={onChangeTheme}>
-      {/*<Router />*/}
-      <ContentPage card={MOCK_CARD} />
+      <Router />
     </ThemeProvider>
   );
 };
 
-export default App;
+const AppWithStore = () => {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+};
+
+export default AppWithStore;
