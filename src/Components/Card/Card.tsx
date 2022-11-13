@@ -8,6 +8,7 @@ import { useThemeContext } from "../../Context/Theme";
 import classNames from "classnames";
 import { useDispatch } from "react-redux";
 import { setSelectedPost } from "../../Redux/Reducers/postsReducer";
+import { setSelectedImage } from "../../Redux/Reducers/imageReducer";
 
 export enum CardSize {
   Large = "large",
@@ -31,6 +32,10 @@ const Card: FC<CardProps> = ({ card, size }) => {
 
   const onSettingClick = () => {
     dispatch(setSelectedPost(card));
+  };
+
+  const onImageClick = () => {
+    dispatch(setSelectedImage(image));
   };
 
   return (
@@ -76,6 +81,7 @@ const Card: FC<CardProps> = ({ card, size }) => {
             [styles.mediumImage]: isMedium,
             [styles.smallImage]: isSmall,
           })}
+          onClick={onImageClick}
         />
       </div>
       <div className={styles.cardFooter}>
