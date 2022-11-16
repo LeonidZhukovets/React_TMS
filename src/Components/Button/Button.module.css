@@ -6,6 +6,8 @@
   line-height: 24px;
   border: 1px solid transparent;
   box-sizing: border-box;
+  display: flex;
+  gap: 10px;
 }
 .button:hover {
   cursor: pointer;
@@ -43,4 +45,29 @@
 
 .error.disabled {
   background-color: transparent;
+}
+.like,
+.dislike,
+.bookmark {
+  background-color: #e8e8e8;
+}
+
+.like:hover,
+.bookmark:hover {
+  background-color: #5360cd;
+  color: #ffffff;
+}
+
+.bookmark:hover * {
+  fill: #ffffff;
+}
+.like:hover * {
+  fill: #ffffff;
+}
+
+.dislike:hover {
+  background-color: #fd3419;
+}
+.dislike:hover * {
+  fill: #ffffff;
 }

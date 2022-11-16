@@ -1,0 +1,51 @@
+.container{
+    flex: 1;
+    max-width: 1120px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 300px;
+    gap: 48px;
+    overflow: auto;
+}
+.title{
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 80px;
+   margin: 0 auto;
+    color: #313037;
+}
+.navContainer{
+    padding-top: 72px;
+    display: flex;
+    gap: 10px;
+}
+.image{
+    max-width: 992px;
+    margin: 0 auto;
+
+}
+
+.mainContainer{
+    margin: 0 auto;
+    max-width: 922px;
+    display: flex;
+    flex-direction: column;
+}
+.description{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 32px;
+    color: #313037;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: space-between;
+    padding: 48px 0 72px;
+    border-bottom: 1px solid #DADADA;
+
+}
+.likeContainer{
+    display: flex;
+    gap: 5px;
+}

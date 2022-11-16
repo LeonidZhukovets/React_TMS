@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 35px 0;
+    border-top: 1px solid #dadada;
+}
+
+.darkContainer {
+    background-color: #313037;
+    color: #ffffff;}

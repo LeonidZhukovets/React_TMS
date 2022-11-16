@@ -1,14 +1,10 @@
-import React, { FC } from "react";
-import styles from "./Title.module.css";
+import React from "react";
+import styles from "./Footer.module.css";
+import { useThemeContext } from "../../Context/Theme";
 import classNames from "classnames";
 import { Theme } from "../../constants/@types";
-import { useThemeContext } from "../../Context/Theme";
 
-type TitleProps = {
-  title: string;
-};
-
-const Title: FC<TitleProps> = ({ title }) => {
+const Footer = () => {
   const { theme } = useThemeContext();
   return (
     <div
@@ -16,9 +12,10 @@ const Title: FC<TitleProps> = ({ title }) => {
         [styles.darkContainer]: theme === Theme.Dark,
       })}
     >
-      {title}
+      <div>©2022 Blogfolio</div>
+      <div>All rights reserved</div>
     </div>
   );
 };
 
-export default Title;
+export default Footer;

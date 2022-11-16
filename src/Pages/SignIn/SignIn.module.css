@@ -35,4 +35,9 @@
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
+ text-decoration: none;
 }
+.SignUpLink:hover{
+  text-decoration: underline;
+}
+
