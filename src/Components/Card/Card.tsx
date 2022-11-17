@@ -19,8 +19,9 @@ export enum CardSize {
 type CardProps = {
   card: CardType;
   size: CardSize;
+  isFromModal?: boolean;
 };
-const Card: FC<CardProps> = ({ card, size }) => {
+const Card: FC<CardProps> = ({ card, size, isFromModal }) => {
   const { theme } = useThemeContext();
   const { title, text, image, date } = card;
 
@@ -81,7 +82,7 @@ const Card: FC<CardProps> = ({ card, size }) => {
             [styles.mediumImage]: isMedium,
             [styles.smallImage]: isSmall,
           })}
-          onClick={onImageClick}
+          onClick={isFromModal ? onImageClick : undefined}
         />
       </div>
       <div className={styles.cardFooter}>
@@ -97,7 +98,10 @@ const Card: FC<CardProps> = ({ card, size }) => {
           <div className={styles.iconButton}>
             <BookmarkIcon />
           </div>
-          <div className={styles.iconButton} onClick={onSettingClick}>
+          <div
+            className={styles.iconButton}
+            onClick={!isFromModal ? onSettingClick : undefined}
+          >
             <SettingIcon />
           </div>
         </div>
