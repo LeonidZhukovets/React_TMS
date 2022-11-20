@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setLikedStatus,
   setSelectedPost,
+  setSavedStatus,
 } from "../../Redux/Reducers/postsReducer";
 import { setSelectedImage } from "../../Redux/Reducers/imageReducer";
 import PostsSelectors from "../../Redux/Selectors/PostsSelectors";
@@ -35,6 +36,8 @@ const Card: FC<CardProps> = ({ card, size, isFromModal }) => {
   const isLiked = likedPosts.findIndex((post) => post.id === card.id) > -1;
   const isDisLiked =
     dislikedPosts.findIndex((post) => post.id === card.id) > -1;
+  const savedPosts = useSelector(PostsSelectors.getSavedPost);
+  const isSaved = savedPosts.findIndex((post) => post.id === card.id) > -1;
 
   const isLarge = size === CardSize.Large;
   const isMedium = size === CardSize.Medium;
@@ -50,6 +53,10 @@ const Card: FC<CardProps> = ({ card, size, isFromModal }) => {
 
   const onStatusClick = (likeStatus: LikeStatus) => () => {
     dispatch(setLikedStatus({ card, likeStatus }));
+  };
+
+  const onBookmarkClick = () => {
+    dispatch(setSavedStatus(card));
   };
 
   return (
@@ -114,7 +121,12 @@ const Card: FC<CardProps> = ({ card, size, isFromModal }) => {
           </div>
         </div>
         <div className={styles.iconsContainer}>
-          <div className={styles.iconButton}>
+          <div
+            className={classNames(styles.iconButton, {
+              [styles.isSaved]: isSaved,
+            })}
+            onClick={onBookmarkClick}
+          >
             <BookmarkIcon />
           </div>
           <div

@@ -62,11 +62,26 @@ const postsSlice = createSlice({
         state[secondaryArrayKey].splice(secondaryIndex, 1);
       }
     },
+    setSavedStatus: (state, action: PayloadAction<CardType>) => {
+      const { ...card } = action.payload;
+      const savedPostsIndex = state.savedPosts.findIndex(
+        (post) => post.id === card.id
+      );
+      if (savedPostsIndex === -1) {
+        state.savedPosts.push(card);
+      } else {
+        state.savedPosts.splice(savedPostsIndex, 1);
+      }
+    },
   },
 });
 
-export const { setSelectedPost, setSelectedPostModalVisible, setLikedStatus } =
-  postsSlice.actions;
+export const {
+  setSelectedPost,
+  setSelectedPostModalVisible,
+  setLikedStatus,
+  setSavedStatus,
+} = postsSlice.actions;
 
 const postsReducer = postsSlice.reducer;
 export default postsReducer;

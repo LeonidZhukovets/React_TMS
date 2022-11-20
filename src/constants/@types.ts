@@ -23,3 +23,9 @@ export enum LikeStatus {
 }
 
 export type SetLikeStatusPayload = { card: CardType; likeStatus: LikeStatus };
+
+export enum Tabs {
+  All = "All",
+  Favorites = "My favorites",
+  Popular = "Popular",
+}

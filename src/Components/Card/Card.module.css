@@ -119,3 +119,5 @@
   width: 96px;
   height: 96px;
 }
+.isSaved svg path{
+  fill: red;}
