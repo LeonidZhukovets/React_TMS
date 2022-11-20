@@ -108,16 +108,18 @@ const Card: FC<CardProps> = ({ card, size, isFromModal }) => {
       <div className={styles.cardFooter}>
         <div className={styles.iconsContainer}>
           <div
-            className={styles.iconButton}
+            className={classNames(styles.iconButton, styles.iconButtonLike)}
             onClick={onStatusClick(LikeStatus.Like)}
           >
-            <LikeIcon /> {isLiked && "1"}
+            <LikeIcon />{" "}
+            {isLiked && <span className={styles.likeCounter}> 1</span>}
           </div>
           <div
-            className={styles.iconButton}
+            className={classNames(styles.iconButton, styles.iconButtonLike)}
             onClick={onStatusClick(LikeStatus.Dislike)}
           >
-            <DisLikeIcon /> {isDisLiked && "1"}
+            <DisLikeIcon />{" "}
+            {isDisLiked && <span className={styles.likeCounter}> 1</span>}
           </div>
         </div>
         <div className={styles.iconsContainer}>
