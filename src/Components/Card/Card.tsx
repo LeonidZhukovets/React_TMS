@@ -125,8 +125,7 @@ const Card: FC<CardProps> = ({ card, size, isFromModal }) => {
         </div>
         <div className={styles.iconsContainer}>
           <div className={styles.iconButton} onClick={onBookmarkClick}>
-            {!isSaved && <BookmarkIcon />}
-            {isSaved && <BookmarkSelectIcon />}
+            {isSaved ? <BookmarkSelectIcon /> : <BookmarkIcon />}
           </div>
           <div
             className={styles.iconButton}
