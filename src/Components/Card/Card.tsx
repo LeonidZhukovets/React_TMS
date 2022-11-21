@@ -13,6 +13,7 @@ import {
 } from "../../Redux/Reducers/postsReducer";
 import { setSelectedImage } from "../../Redux/Reducers/imageReducer";
 import PostsSelectors from "../../Redux/Selectors/PostsSelectors";
+import { BookmarkSelectIcon } from "../../Assets/icons/BookmarkSelectIcon";
 
 export enum CardSize {
   Large = "large",
@@ -108,14 +109,14 @@ const Card: FC<CardProps> = ({ card, size, isFromModal }) => {
       <div className={styles.cardFooter}>
         <div className={styles.iconsContainer}>
           <div
-            className={classNames(styles.iconButton, styles.iconButtonLike)}
+            className={styles.iconButton}
             onClick={onStatusClick(LikeStatus.Like)}
           >
             <LikeIcon />{" "}
             {isLiked && <span className={styles.likeCounter}> 1</span>}
           </div>
           <div
-            className={classNames(styles.iconButton, styles.iconButtonLike)}
+            className={styles.iconButton}
             onClick={onStatusClick(LikeStatus.Dislike)}
           >
             <DisLikeIcon />{" "}
@@ -123,13 +124,9 @@ const Card: FC<CardProps> = ({ card, size, isFromModal }) => {
           </div>
         </div>
         <div className={styles.iconsContainer}>
-          <div
-            className={classNames(styles.iconButton, {
-              [styles.isSaved]: isSaved,
-            })}
-            onClick={onBookmarkClick}
-          >
-            <BookmarkIcon />
+          <div className={styles.iconButton} onClick={onBookmarkClick}>
+            {!isSaved && <BookmarkIcon />}
+            {isSaved && <BookmarkSelectIcon />}
           </div>
           <div
             className={styles.iconButton}
