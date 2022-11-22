@@ -86,9 +86,13 @@
 
 .iconButton {
   display: flex;
+  gap: 8px;
+
 }
+
 .iconButton:hover {
   cursor: pointer;
+  opacity: 0.8;
 }
 
 .mediumContainer {
@@ -118,4 +122,12 @@
 .smallImage {
   width: 96px;
   height: 96px;
+}
+
+.likeCounter {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #313037;
+
 }
