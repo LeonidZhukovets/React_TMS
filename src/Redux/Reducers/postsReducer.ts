@@ -63,7 +63,7 @@ const postsSlice = createSlice({
       }
     },
     setSavedStatus: (state, action: PayloadAction<CardType>) => {
-      const { ...card } = action.payload;
+      const card = action.payload;
       const savedPostsIndex = state.savedPosts.findIndex(
         (post) => post.id === card.id
       );
