@@ -27,7 +27,6 @@ const ResetPassword = () => {
             value={login}
             onChange={(value: string) => setLogin(value)}
             ref={inputRef}
-            className={styles.input}
           />
           <Button
             title={"Reset"}
