@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Button, { ButtonTypes } from "../../Components/Button";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import FormContainer from "../../Components/FormContainer";
 import Input from "../../Components/Input";
@@ -16,9 +16,18 @@ const SignUp = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onSignUp = () => {
-    dispatch(registerUser({ username: name, email: login, password }));
+    dispatch(
+      registerUser({
+        data: { username: name, email: login, password },
+        callback: () =>
+          navigate(PathNames.RegistrationConfirmation, {
+            state: { email: login },
+          }),
+      })
+    );
   };
 
   const nameRef = useRef<HTMLInputElement>(null);
