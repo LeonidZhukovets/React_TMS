@@ -16,11 +16,12 @@ const activateUser = (date: ActivateUserData) => {
 };
 
 const getSinglePost = (id: string) => {
-  return API.get("/blog/posts/${id}/");
+  return API.get(`/blog/posts/${id}/`);
 };
 
 export default {
   registerUser,
   getAllPosts,
   activateUser,
+  getSinglePost,
 };

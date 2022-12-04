@@ -1,7 +1,7 @@
 import { takeLatest, all, call } from "redux-saga/effects";
 import { activateUser, registerUser } from "../Reducers/authReducer";
 import { PayloadAction } from "@reduxjs/toolkit";
-import { ActivateUsePayload, RegisterUserPayload } from "../Types/auth";
+import { ActivateUserPayload, RegisterUserPayload } from "../Types/auth";
 import API from "../utils/api";
 
 function* registerUserWorker(action: PayloadAction<RegisterUserPayload>) {
@@ -13,9 +13,9 @@ function* registerUserWorker(action: PayloadAction<RegisterUserPayload>) {
     console.warn("Error while registering user", problem);
   }
 }
-function* activateUserWorker(action: PayloadAction<ActivateUsePayload>) {
-  const { data: registerData, callback } = action.payload;
-  const { ok, problem } = yield call(API.activateUser, registerData);
+function* activateUserWorker(action: PayloadAction<ActivateUserPayload>) {
+  const { data: activateData, callback } = action.payload;
+  const { ok, problem } = yield call(API.activateUser, activateData);
   if (ok) {
     callback();
   } else {

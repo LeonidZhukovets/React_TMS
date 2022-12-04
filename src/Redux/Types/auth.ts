@@ -12,7 +12,7 @@ export type ActivateUserData = {
   uid: string;
   token: string;
 };
-export type ActivateUsePayload = {
+export type ActivateUserPayload = {
   data: ActivateUserData;
   callback: () => void;
 };

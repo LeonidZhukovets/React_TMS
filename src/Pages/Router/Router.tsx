@@ -27,10 +27,7 @@ const Router = () => {
         <Route path={PathNames.Home} element={<PagesWrapper />}>
           <Route path={PathNames.SignIn} element={<SignIn />} />
           <Route path={PathNames.SignUp} element={<SignUp />} />
-          <Route
-            path={PathNames.ContentPage}
-            element={<ContentPage card={} />}
-          />
+          <Route path={PathNames.ContentPage} element={<ContentPage />} />
           <Route
             path={PathNames.RegistrationConfirmation}
             element={<RegistrationConfirmation />}

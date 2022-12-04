@@ -1,9 +1,6 @@
 import React from "react";
 import Button, { ButtonTypes } from "../../Components/Button";
-
 import FormContainer from "../../Components/FormContainer";
-
-//@ts-ignore
 import styles from "./Success.module.css";
 import { useParams } from "react-router";
 import { useDispatch } from "react-redux";
@@ -13,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const Success = () => {
   const { uid, token } = useParams();
-  console.log(uid, token);
+  // console.log(uid, token); // Проверка приходит ли
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onConfirm = () => {
