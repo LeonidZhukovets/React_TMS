@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import SignIn from "../SignIn";
 import SignUp from "../SignUp";
 import PagesWrapper from "../PagesWrapper";
-import RegistrationConfirmation from "../RegistrationConfirmation";
 
 export enum PathNames {
   Home = "/",
@@ -23,10 +22,6 @@ const Router = () => {
         <Route path={PathNames.Home} element={<PagesWrapper />}>
           <Route path={PathNames.SignIn} element={<SignIn />} />
           <Route path={PathNames.SignUp} element={<SignUp />} />
-          <Route
-            path={PathNames.RegistrationConfirmation}
-            element={<RegistrationConfirmation />}
-          />
         </Route>
         <Route path="*" element={<Navigate to={PathNames.SignIn} />} />
       </Routes>
