@@ -7,10 +7,13 @@ import styles from "./Menu.module.css";
 import { PathNames } from "../../../Pages/Router/Router";
 import classNames from "classnames";
 import UserName from "../../UserName";
-
-export const isLoggedIn = false;
+import { useSelector } from "react-redux";
+import AuthSelectors from "../../../Redux/Selectors/authSelectors";
 
 const Menu = () => {
+  const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
+  const username = useSelector(AuthSelectors.getUserName);
+
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -29,7 +32,7 @@ const Menu = () => {
   return (
     <div className={styles.container}>
       <div>
-        {isLoggedIn && <UserName username={"Artem_Malkin"} />}
+        {isLoggedIn && !!username && <UserName username={username} />}
         {navButtons.map(({ link, title }) => {
           return (
             <NavLink
