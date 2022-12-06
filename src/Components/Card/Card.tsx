@@ -14,6 +14,7 @@ import {
 import { setSelectedImage } from "../../Redux/Reducers/imageReducer";
 import PostsSelectors from "../../Redux/Selectors/PostsSelectors";
 import { BookmarkSelectIcon } from "../../Assets/icons/BookmarkSelectIcon";
+import { useNavigate } from "react-router-dom";
 
 export enum CardSize {
   Large = "large",
@@ -28,7 +29,7 @@ type CardProps = {
 };
 const Card: FC<CardProps> = ({ card, size, isFromModal }) => {
   const { theme } = useThemeContext();
-  const { title, text, image, date } = card;
+  const { title, text, image, date, id } = card;
 
   const dispatch = useDispatch();
 
@@ -43,6 +44,12 @@ const Card: FC<CardProps> = ({ card, size, isFromModal }) => {
   const isLarge = size === CardSize.Large;
   const isMedium = size === CardSize.Medium;
   const isSmall = size === CardSize.Small;
+
+  const navigate = useNavigate();
+
+  const onTitleClick = () => {
+    navigate(`/content/${id}`);
+  };
 
   const onSettingClick = () => {
     dispatch(setSelectedPost(card));
@@ -82,6 +89,7 @@ const Card: FC<CardProps> = ({ card, size, isFromModal }) => {
                 [styles.smallTitle]: !isLarge,
                 [styles.lightTitle]: theme === Theme.Dark,
               })}
+              onClick={onTitleClick}
             >
               {title}
             </div>
