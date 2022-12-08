@@ -1,4 +1,4 @@
-import { create } from "apisauce";
+import { create, ApiResponse } from "apisauce";
 import {
   ActivateUserData,
   RegisterUserData,
@@ -39,6 +39,13 @@ const getUserInfo = (token: string) => {
   );
 };
 
+const getNewAccessToken = (refresh: string) => {
+  return API.post("/auth/jwt/refresh/", { refresh });
+};
+const verifyToken = (token: string) => {
+  return API.post("/auth/jwt/verify/", { token });
+};
+
 export default {
   registerUser,
   getAllPosts,
@@ -46,4 +53,6 @@ export default {
   getSinglePost,
   signInUser,
   getUserInfo,
+  getNewAccessToken,
+  verifyToken,
 };
