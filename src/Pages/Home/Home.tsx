@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PostsSelectors from "../../Redux/Selectors/PostsSelectors";
 import { getPosts } from "../../Redux/Reducers/postsReducer";
 import AuthSelectors from "../../Redux/Selectors/authSelectors";
+import Loader from "../../Components/Loader";
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState(Tabs.All);
@@ -22,6 +23,8 @@ const Home = () => {
   const savedPosts = useSelector(PostsSelectors.getSavedPost);
   const allPosts = useSelector(PostsSelectors.getAllPosts);
   const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
+
+  const isLoading = useSelector(PostsSelectors.getPostsLoading);
 
   const cardArray = () => {
     if (activeTab === Tabs.Popular) {
@@ -54,14 +57,20 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <Title title={"Blog"} />
-      <TabsList
-        activeTab={activeTab}
-        onSelectTab={onTabClick}
-        tabsList={TABS_NAMES}
-      />
-      <CardsList cardsList={cardArray()} />
-      <SelectedPostModal />
-      <SelectedImageModal />
+      {!isLoading ? (
+        <>
+          <TabsList
+            activeTab={activeTab}
+            onSelectTab={onTabClick}
+            tabsList={TABS_NAMES}
+          />
+          <CardsList cardsList={cardArray()} />
+          <SelectedPostModal />
+          <SelectedImageModal />
+        </>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

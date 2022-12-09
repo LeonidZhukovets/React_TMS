@@ -4,17 +4,20 @@ import {
   setPosts,
   getSinglePost,
   setSinglePost,
+  setPostsLoading,
 } from "../Reducers/postsReducer";
 import { PayloadAction } from "@reduxjs/toolkit";
 import API from "../utils/api";
 
 function* getPostsWorker(action: PayloadAction<undefined>) {
+  yield put(setPostsLoading(true));
   const { ok, data, problem } = yield call(API.getAllPosts);
   if (ok && data) {
     yield put(setPosts(data.results));
   } else {
     console.warn("Error fetching posts: ", problem);
   }
+  yield put(setPostsLoading(false));
 }
 
 function* getSinglePostWorker(action: PayloadAction<string>) {
