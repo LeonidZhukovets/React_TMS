@@ -2,10 +2,10 @@ import React, { FC } from "react";
 import { CardsListType, Theme } from "../../constants/@types";
 import Card from "../Card";
 import { CardSize } from "../Card/Card";
-//@ts-ignore
 import styles from "./CardsList.module.css";
 import classnames from "classnames";
 import { useThemeContext } from "../../Context/Theme";
+import EmptyState from "../EmptyState";
 
 type CardsListProps = {
   cardsList: CardsListType | null;
@@ -38,7 +38,7 @@ const CardsList: FC<CardsListProps> = ({ cardsList }) => {
       </div>
     </div>
   ) : (
-    <div>No posts yet...</div>
+    <EmptyState />
   );
 };
 

@@ -5,9 +5,13 @@ import {
   getSinglePost,
   setSinglePost,
   setPostsLoading,
+  setMyPostsLoading,
+  setMyPosts,
+  getMyPosts,
 } from "../Reducers/postsReducer";
 import { PayloadAction } from "@reduxjs/toolkit";
 import API from "../utils/api";
+import callCheckingAuth from "./callCheckingAuth";
 
 function* getPostsWorker(action: PayloadAction<undefined>) {
   yield put(setPostsLoading(true));
@@ -15,9 +19,22 @@ function* getPostsWorker(action: PayloadAction<undefined>) {
   if (ok && data) {
     yield put(setPosts(data.results));
   } else {
-    console.warn("Error fetching posts: ", problem);
+    console.warn("Error fetching all posts: ", problem);
   }
   yield put(setPostsLoading(false));
+}
+
+function* getMyPostsWorker(action: PayloadAction<undefined>) {
+  yield put(setMyPostsLoading(true));
+  const { ok, data, problem, status } = yield callCheckingAuth(API.getMyPosts);
+  if (ok && data) {
+    yield put(setMyPosts(data));
+  } else if (status === 404) {
+    yield put(setMyPosts([]));
+  } else {
+    console.warn("Error fetching my posts: ", problem);
+  }
+  yield put(setMyPostsLoading(false));
 }
 
 function* getSinglePostWorker(action: PayloadAction<string>) {
@@ -32,6 +49,7 @@ function* getSinglePostWorker(action: PayloadAction<string>) {
 export default function* postSaga() {
   yield all([
     takeLatest(getPosts, getPostsWorker),
+    takeLatest(getMyPosts, getMyPostsWorker),
     takeLatest(getSinglePost, getSinglePostWorker),
   ]);
 }

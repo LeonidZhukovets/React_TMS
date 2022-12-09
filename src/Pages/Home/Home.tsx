@@ -9,7 +9,7 @@ import SelectedImageModal from "./SelectedImageModal";
 import { Tabs } from "../../constants/@types";
 import { useDispatch, useSelector } from "react-redux";
 import PostsSelectors from "../../Redux/Selectors/PostsSelectors";
-import { getPosts } from "../../Redux/Reducers/postsReducer";
+import { getMyPosts, getPosts } from "../../Redux/Reducers/postsReducer";
 import AuthSelectors from "../../Redux/Selectors/authSelectors";
 import Loader from "../../Components/Loader";
 
@@ -22,6 +22,7 @@ const Home = () => {
   const likedPosts = useSelector(PostsSelectors.getLikedPost);
   const savedPosts = useSelector(PostsSelectors.getSavedPost);
   const allPosts = useSelector(PostsSelectors.getAllPosts);
+  const myPosts = useSelector(PostsSelectors.getMyPosts);
   const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
 
   const isLoading = useSelector(PostsSelectors.getPostsLoading);
@@ -31,14 +32,21 @@ const Home = () => {
       return likedPosts;
     } else if (activeTab === Tabs.Favorites) {
       return savedPosts;
+    } else if (activeTab === Tabs.MyPosts) {
+      return myPosts;
     } else {
       return allPosts;
     }
   };
   const dispatch = useDispatch();
+  const isActiveTab = activeTab === Tabs.MyPosts; // Подсмотрел у Антона...
   useEffect(() => {
-    dispatch(getPosts());
-  }, []);
+    if (isActiveTab) {
+      dispatch(getMyPosts());
+    } else {
+      dispatch(getPosts());
+    }
+  }, [isActiveTab]);
 
   const TABS_NAMES = useMemo(
     () => [

@@ -1,4 +1,4 @@
-import { create, ApiResponse } from "apisauce";
+import { create } from "apisauce";
 import {
   ActivateUserData,
   RegisterUserData,
@@ -13,6 +13,18 @@ const registerUser = (data: RegisterUserData) => {
 
 const getAllPosts = () => {
   return API.get("/blog/posts/?limit=11");
+};
+
+const getMyPosts = (token: string) => {
+  return API.get(
+    "/blog/posts/my_posts/",
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 };
 
 const activateUser = (data: ActivateUserData) => {
@@ -49,6 +61,7 @@ const verifyToken = (token: string) => {
 export default {
   registerUser,
   getAllPosts,
+  getMyPosts,
   activateUser,
   getSinglePost,
   signInUser,
