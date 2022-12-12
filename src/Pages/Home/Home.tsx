@@ -39,14 +39,13 @@ const Home = () => {
     }
   };
   const dispatch = useDispatch();
-  const isActiveTab = activeTab === Tabs.MyPosts; // Подсмотрел у Антона...
   useEffect(() => {
-    if (isActiveTab) {
+    if (activeTab === Tabs.MyPosts) {
       dispatch(getMyPosts());
     } else {
       dispatch(getPosts());
     }
-  }, [isActiveTab]);
+  }, [activeTab]);
 
   const TABS_NAMES = useMemo(
     () => [
