@@ -4,6 +4,7 @@ import {
   RegisterUserData,
   SignInUserData,
 } from "../Types/auth";
+import { PER_PAGE } from "../../constants/consts";
 
 const API = create({ baseURL: "https://studapi.teachmeskills.by" });
 
@@ -11,8 +12,8 @@ const registerUser = (data: RegisterUserData) => {
   return API.post("/auth/users/", data);
 };
 
-const getAllPosts = () => {
-  return API.get("/blog/posts/?limit=11");
+const getAllPosts = (offset: number) => {
+  return API.get("/blog/posts/", { limit: PER_PAGE, offset });
 };
 
 const getMyPosts = (token: string) => {

@@ -8,16 +8,20 @@ import {
   setMyPostsLoading,
   setMyPosts,
   getMyPosts,
+  setTotalCount,
 } from "../Reducers/postsReducer";
 import { PayloadAction } from "@reduxjs/toolkit";
 import API from "../utils/api";
 import callCheckingAuth from "./callCheckingAuth";
+import { GetPostsPayload } from "../Types/posts";
 
-function* getPostsWorker(action: PayloadAction<undefined>) {
+function* getPostsWorker(action: PayloadAction<GetPostsPayload>) {
+  const { offset } = action.payload;
   yield put(setPostsLoading(true));
-  const { ok, data, problem } = yield call(API.getAllPosts);
+  const { ok, data, problem } = yield call(API.getAllPosts, offset);
   if (ok && data) {
     yield put(setPosts(data.results));
+    yield put(setTotalCount(data.count));
   } else {
     console.warn("Error fetching all posts: ", problem);
   }
