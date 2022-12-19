@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import FormContainer from "../../Components/FormContainer";
 import Input from "../../Components/Input";
 import styles from "./SignIn.module.css";
 import Button, { ButtonTypes } from "../../Components/Button";
 import { PathNames } from "../Router/Router";
+import { signInUser } from "../../Redux/Reducers/authReducer";
+import { useDispatch } from "react-redux";
 
 const SignIn = () => {
   const [login, setLogin] = useState("");
@@ -13,11 +15,23 @@ const SignIn = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
   }, []);
+
+  const onSignIn = () => {
+    dispatch(
+      signInUser({
+        data: { email: login, password },
+        callback: () => navigate(PathNames.Home),
+      })
+    );
+  };
 
   return (
     <FormContainer title={"Sign In"}>
@@ -41,7 +55,7 @@ const SignIn = () => {
         <Button
           title={"Sign In"}
           type={ButtonTypes.Primary}
-          onClick={() => {}}
+          onClick={onSignIn}
           className={styles.button}
         />
         <div className={styles.signUpRedirectContainer}>

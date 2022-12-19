@@ -3,21 +3,16 @@ import classNames from "classnames";
 import styles from "./TabsList.module.css";
 import { Tabs } from "../../constants/@types";
 
-const TABS_NAMES = [
-  { name: "All", key: Tabs.All },
-  { name: "My favorites", key: Tabs.Favorites },
-  { name: "Popular", key: Tabs.Popular },
-];
-
 type TabProps = {
   activeTab: Tabs;
   onSelectTab: (tab: Tabs) => void;
+  tabsList: Array<{ name: string; key: Tabs }>;
 };
 
-const TabsList: FC<TabProps> = ({ activeTab, onSelectTab }) => {
+const TabsList: FC<TabProps> = ({ activeTab, onSelectTab, tabsList }) => {
   return (
     <div className={styles.container}>
-      {TABS_NAMES.map((tab) => {
+      {tabsList.map((tab) => {
         return (
           <div className={styles.tabs}>
             <div
