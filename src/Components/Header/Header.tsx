@@ -26,13 +26,16 @@ const Header = () => {
   };
   const [isSearch, setSearch] = useState(false);
 
-  const onSearchClick = () => {
-    setSearch(!isSearch);
-  };
-
   const navigateTo = useNavigate();
   const logInUser = () => {
     navigateTo(PathNames.SignIn);
+  };
+
+  const onSearchClick = () => {
+    if (isSearch) {
+      navigateTo(`search/${inputValue}`);
+    }
+    setSearch(!isSearch);
   };
   const [inputValue, setInputValue] = useState("");
 

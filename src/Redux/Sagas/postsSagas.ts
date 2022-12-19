@@ -16,9 +16,14 @@ import callCheckingAuth from "./callCheckingAuth";
 import { GetPostsPayload } from "../Types/posts";
 
 function* getPostsWorker(action: PayloadAction<GetPostsPayload>) {
-  const { offset } = action.payload;
+  const { offset, search, ordering } = action.payload;
   yield put(setPostsLoading(true));
-  const { ok, data, problem } = yield call(API.getAllPosts, offset);
+  const { ok, data, problem } = yield call(
+    API.getAllPosts,
+    offset,
+    search,
+    ordering
+  );
   if (ok && data) {
     yield put(setPosts(data.results));
     yield put(setTotalCount(data.count));

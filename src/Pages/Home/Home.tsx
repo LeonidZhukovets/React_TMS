@@ -6,7 +6,7 @@ import TabsList from "../../Components/TabsList";
 import Title from "../../Components/Title";
 import SelectedPostModal from "./SelectedPostModal";
 import SelectedImageModal from "./SelectedImageModal";
-import { Tabs } from "../../constants/@types";
+import { Order, Tabs } from "../../constants/@types";
 import { useDispatch, useSelector } from "react-redux";
 import PostsSelectors from "../../Redux/Selectors/PostsSelectors";
 import { getMyPosts, getPosts } from "../../Redux/Reducers/postsReducer";
@@ -14,6 +14,7 @@ import AuthSelectors from "../../Redux/Selectors/authSelectors";
 import Loader from "../../Components/Loader";
 import { PER_PAGE } from "../../constants/consts";
 import classNames from "classnames";
+import Button, { ButtonTypes } from "../../Components/Button";
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState(Tabs.All);
@@ -21,6 +22,14 @@ const Home = () => {
     setActiveTab(tab);
   };
   const [currentPage, setCurrentPage] = useState(1);
+  const [ordering, setOrdering] = useState("");
+
+  const onClickButtonOrdering = (order: Order) => () => {
+    if (ordering === order) {
+      setOrdering("");
+    } else setOrdering(order);
+    setCurrentPage(1);
+  };
 
   const likedPosts = useSelector(PostsSelectors.getLikedPost);
   const savedPosts = useSelector(PostsSelectors.getSavedPost);
@@ -50,9 +59,9 @@ const Home = () => {
     if (activeTab === Tabs.MyPosts) {
       dispatch(getMyPosts());
     } else {
-      dispatch(getPosts({ offset }));
+      dispatch(getPosts({ offset, ordering }));
     }
-  }, [activeTab, currentPage]);
+  }, [activeTab, currentPage, ordering]);
 
   const TABS_NAMES = useMemo(
     () => [
@@ -79,35 +88,57 @@ const Home = () => {
             onSelectTab={onTabClick}
             tabsList={TABS_NAMES}
           />
+          <div className={styles.orderingBlock}>
+            <Button
+              className={classNames({
+                [styles.clicked]: ordering === Order.Date,
+              })}
+              title={"Date"}
+              type={ButtonTypes.Primary}
+              onClick={onClickButtonOrdering(Order.Date)}
+            />
+            <Button
+              className={classNames({
+                [styles.clicked]: ordering === Order.Title,
+              })}
+              title={"Title"}
+              type={ButtonTypes.Primary}
+              onClick={onClickButtonOrdering(Order.Title)}
+            />
+          </div>
           <CardsList cardsList={cardArray()} />
-          <div
-            onClick={
-              currentPage !== 1 ? onPageChange(currentPage - 1) : undefined
-            }
-          >
-            Prev
-          </div>
-          <div>
-            {pages.map((i) => (
-              <div
-                key={i}
-                className={classNames({
-                  [styles.activePage]: i + 1 === currentPage,
-                })}
-                onClick={onPageChange(i + 1)}
-              >
-                {i + 1}
-              </div>
-            ))}
-          </div>
-          <div
-            onClick={
-              currentPage !== totalPagesCount
-                ? onPageChange(currentPage + 1)
-                : undefined
-            }
-          >
-            Next
+          <div className={styles.paginationContainer}>
+            <div
+              className={styles.prev}
+              onClick={
+                currentPage !== 1 ? onPageChange(currentPage - 1) : undefined
+              }
+            >
+              Prev
+            </div>
+            <div className={styles.pagesList}>
+              {pages.map((i) => (
+                <div
+                  key={i}
+                  className={classNames(styles.page, {
+                    [styles.activePage]: i + 1 === currentPage,
+                  })}
+                  onClick={onPageChange(i + 1)}
+                >
+                  {i + 1}
+                </div>
+              ))}
+            </div>
+            <div
+              className={styles.next}
+              onClick={
+                currentPage !== totalPagesCount
+                  ? onPageChange(currentPage + 1)
+                  : undefined
+              }
+            >
+              Next
+            </div>
           </div>
           <SelectedPostModal />
           <SelectedImageModal />

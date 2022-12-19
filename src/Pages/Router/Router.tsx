@@ -10,6 +10,7 @@ import ContentPage from "../ContentPage";
 import { useDispatch, useSelector } from "react-redux";
 import AuthSelectors from "../../Redux/Selectors/authSelectors";
 import { getUserData } from "../../Redux/Reducers/authReducer";
+import SearchPage from "../SearchPage";
 
 export enum PathNames {
   Home = "/",
@@ -19,7 +20,7 @@ export enum PathNames {
   ContentPage = "/content/:id",
   RegistrationConfirmation = "/sign-up/confirm",
   RegistrationSuccess = "/sign-up/success",
-  Search = "/search",
+  Search = "/search/:searchString",
   ActivateUser = "/activate/:uid/:token",
 }
 
@@ -43,6 +44,7 @@ const Router = () => {
           <Route path={PathNames.SignIn} element={<SignIn />} />
           <Route path={PathNames.SignUp} element={<SignUp />} />
           <Route path={PathNames.ContentPage} element={<ContentPage />} />
+          <Route path={PathNames.Search} element={<SearchPage />} />
           <Route
             path={PathNames.AddPost}
             element={
