@@ -14,7 +14,7 @@ const PagesWrapper = () => {
     <div className={styles.container}>
       <Header />
       {pathname === PathNames.Home ? <Home /> : <Outlet />}
-      <Footer />
+      {/*<Footer />*/}
     </div>
   );
 };
