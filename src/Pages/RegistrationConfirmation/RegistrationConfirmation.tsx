@@ -2,11 +2,11 @@ import React from "react";
 import Button, { ButtonTypes } from "../../Components/Button";
 
 import FormContainer from "../../Components/FormContainer";
-
-//@ts-ignore
 import styles from "./RegistrationConfirmation.module.css";
+import { useLocation } from "react-router-dom";
 
 const RegistrationConfirmation = () => {
+  const { state } = useLocation();
   return (
     <FormContainer title={"Registration Confirmation"}>
       <>
@@ -14,8 +14,9 @@ const RegistrationConfirmation = () => {
           <div className={styles.description}>
             Please activate your account with the activation <br />
             link in the email{" "}
-            <span className={styles.email}>example@gmail.com.</span> <br />{" "}
-            Please, check your email
+            <span className={styles.email}>
+              {state?.email || ""}
+            </span> <br /> Please, check your email
           </div>
           <Button
             title={"Go to home"}

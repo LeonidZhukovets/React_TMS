@@ -9,13 +9,16 @@ import {
 } from "../../Assets";
 import styles from "./Header.module.css";
 import Menu from "./Menu";
-import { isLoggedIn } from "./Menu/Menu";
 import UserName from "../UserName";
 import { PathNames } from "../../Pages/Router/Router";
 import { useNavigate } from "react-router-dom";
 import Input from "../Input";
+import { useSelector } from "react-redux";
+import AuthSelectors from "../../Redux/Selectors/authSelectors";
 
 const Header = () => {
+  const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
+  const username = useSelector(AuthSelectors.getUserName);
   const [isOpened, setOpened] = useState(false);
 
   const onBurgerClick = () => {
@@ -23,13 +26,16 @@ const Header = () => {
   };
   const [isSearch, setSearch] = useState(false);
 
-  const onSearchClick = () => {
-    setSearch(!isSearch);
-  };
-
   const navigateTo = useNavigate();
   const logInUser = () => {
     navigateTo(PathNames.SignIn);
+  };
+
+  const onSearchClick = () => {
+    if (isSearch) {
+      navigateTo(`search/${inputValue}`);
+    }
+    setSearch(!isSearch);
   };
   const [inputValue, setInputValue] = useState("");
 
@@ -60,8 +66,8 @@ const Header = () => {
           onClick={onSearchClick}
           className={styles.searchButton}
         />
-        {isLoggedIn ? (
-          <UserName username={"Artem_Malkin"} />
+        {isLoggedIn && !!username ? (
+          <UserName username={username} />
         ) : (
           <Button
             icon={<UserIcon />}
